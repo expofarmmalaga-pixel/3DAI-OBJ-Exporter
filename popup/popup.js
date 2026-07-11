@@ -7,21 +7,18 @@ document.getElementById("export").onclick = async () => {
 
     chrome.scripting.executeScript({
 
-        target: { tabId: tab.id },
+        target: {
+            tabId: tab.id
+        },
 
-        files: [
-            "export/export.js"
-        ]
+        func: () => {
 
-    }, () => {
+            if (window.exportOBJ)
+                window.exportOBJ();
+            else
+                alert("exportOBJ no encontrado");
 
-        chrome.scripting.executeScript({
-
-            target: { tabId: tab.id },
-
-            func: () => window.exportOBJ()
-
-        });
+        }
 
     });
 
